@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procrastinotes</title>
+    <link rel="Styler" href ="Styler.css" />
+</head>
+<body>
+    <script>
+         function returnText(){
+            
+            var text = document.getElementById("myNotes").value;
+            var characters = [];
+            var sentences =[];
+           
+            
+            for (let i = 0; i < text.length ; i++){
+                if (text[i] != "."){
+                    characters.push(text[i]);
+                } else {
+                    sentences.push(characters.join(""));
+                    characters = [];
+                }
+            }
+            alert(sentences[1]);
+            }
+
+        console.log(Notification.permission);
+        function showNotification(){
+             const notification = new Notification("New Message!", {
+                body:"Yay the notifications finally work"
+             });
+             console.log(notification)
+    }
+        function submit(){
+            if (Notification.permission == "granted"){
+                showNotification();
+            } else if (Notification.permission != "denied"){
+                Notification.requestPermission().then(permission => {
+                    if (permission == "granted"){
+                        showNotification();
+                    }
+                });
+            }
+
+
+        }
+    </script>
+   
+
+    <label for="myNotes">Review of W3Schools:</label>
+    <textarea id="myNotes" name="w3review" rows="50" cols="50">Put your notes in this box!</textarea>
+    <button class="notes" onclick ="returnText()"> Try it</button>
+    <button onclick ="submit()">Submission</button>
+    
+</body>
+</html>
